@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}
+Categorías | Festival de la Leyenda Vallenata 2027
+{% endblock %}
+
+
+{% block content %}
+
+<section class="seccion categorias-page">
+
+    <div class="contenedor">
+
+        <p class="hero-etiqueta">
+            Festival de la Leyenda Vallenata 2027
+        </p>
+
+        <h1 class="titulo-seccion">
+            Categorías
+        </h1>
+
+        <p class="subtitulo-seccion">
+            Conoce las categorías disponibles y descubre las votaciones
+            de esta edición del Festival.
+        </p>
+
+
+        <div class="grid-categorias">
+
+            {% for categoria in categorias %}
+
+                <article class="tarjeta">
+
+                    {% if categoria.imagen %}
+
+                        <img
+                            src="{{ categoria.imagen.url }}"
+                            alt="{{ categoria.nombre }}"
+                            class="imagen-tarjeta"
+                        >
+
+                    {% endif %}
+
+
+                    <div class="contenido-tarjeta">
+
+                        <p class="categoria-edicion">
+                            Festival {{ categoria.edicion.anio }}
+                        </p>
+
+                        <h2>
+                            {{ categoria.nombre }}
+                        </h2>
+
+                        <p>
+                            {{ categoria.descripcion }}
+                        </p>
+
+                        <a
+                            href="{% url 'votaciones:categoria_detalle' categoria.pk %}"
+                            class="tarjeta-enlace"
+                        >
+                            Ver votaciones →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+                
+                <article class="tarjeta">
+
+                    {% if categoria.imagen %}
+                        <div class="categoria-imagen-contenedor">
+                             <img
+                                 src="{{ categoria.imagen.url }}"
+                                alt="{{ categoria.nombre }}"
+                                class="categoria-imagen"
+                              >
+                        </div>
+{% endif %}
+
+                    <h2>
+                        Próximamente
+                    </h2>
+
+                    <p>
+                        Todavía no hay categorías disponibles para esta edición.
+                    </p>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

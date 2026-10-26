@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}
+Festival de la Leyenda Vallenata 2027
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =====================================================
+     HERO PRINCIPAL
+     ===================================================== -->
+
+<section class="hero-principal">
+
+    <div class="hero-fondo"></div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-contenedor">
+
+        <div class="hero-contenido">
+
+            <p class="hero-etiqueta">
+                Festival de la Leyenda Vallenata 2027
+            </p>
+
+            <h1 class="hero-titulo">
+                Vota por tus
+                <span>favoritos</span>
+            </h1>
+
+            <p class="hero-descripcion">
+                La tradición vallenata también se vive con tu participación.
+                Conoce las categorías y los participantes de esta edición.
+            </p>
+
+            <div class="hero-acciones">
+
+                <a
+                    href="{% url 'votaciones:categorias' %}"
+                    class="hero-boton-principal"
+                >
+                    Ver categorías
+                </a>
+
+                {% if not user.is_authenticated %}
+
+                    <a
+                        href="{% url 'accounts:registro' %}"
+                        class="hero-boton-secundario"
+                    >
+                        Crear cuenta
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="seccion">
+
+    <div class="contenedor">
+
+        {% if edicion %}
+
+            <h2 class="titulo-seccion">
+                {{ edicion.nombre }}
+            </h2>
+
+            <p class="subtitulo-seccion">
+                {{ edicion.descripcion }}
+            </p>
+
+        {% endif %}
+
+
+        <h2 class="titulo-seccion">
+            Categorías destacadas
+        </h2>
+
+        <div class="grid-categorias">
+
+            {% for categoria in categorias %}
+
+                <article class="tarjeta">
+
+                    <h3>
+                        {{ categoria.nombre }}
+                    </h3>
+
+                    <p>
+                        {{ categoria.descripcion }}
+                    </p>
+
+                    <a
+                        href="{% url 'votaciones:categoria_detalle' categoria.pk %}"
+                        class="tarjeta-enlace"
+                    >
+                        Ver votaciones →
+                    </a>
+
+                </article>
+
+            {% empty %}
+
+                <p>
+                    No hay categorías disponibles.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

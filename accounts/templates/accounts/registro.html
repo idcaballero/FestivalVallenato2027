@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% block title %}
+Crear cuenta | Festival de la Leyenda Vallenata 2027
+{% endblock %}
+
+{% block content %}
+
+<section class="registro-page">
+
+    <div class="contenedor registro-contenedor">
+
+        <div class="registro-layout">
+
+            <!-- TEXTO DE PRESENTACIÓN -->
+            <div class="registro-info">
+
+                <p class="hero-etiqueta">
+                    Haz parte del Festival
+                </p>
+
+                <h1 class="registro-titulo">
+                    Crea tu cuenta
+                </h1>
+
+                <p class="registro-descripcion">
+                    Regístrate para participar en las votaciones,
+                    conocer las categorías y apoyar a tus participantes favoritos.
+                </p>
+
+            </div>
+
+
+            <!-- TARJETA DEL FORMULARIO -->
+            <div class="registro-card">
+
+                <div class="registro-card-header">
+
+                    <h2>
+                        Registro
+                    </h2>
+
+                    <p>
+                        Completa tus datos para comenzar.
+                    </p>
+
+                </div>
+
+
+                <form method="post" class="registro-form">
+
+                    {% csrf_token %}
+
+
+                    <!-- ERRORES GENERALES -->
+                    {% if form.non_field_errors %}
+
+                        <div class="registro-error-general">
+
+                            {% for error in form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- USUARIO -->
+                    <div class="registro-campo">
+
+                        <label for="{{ form.username.id_for_label }}">
+                            Nombre de usuario
+                        </label>
+
+                        {{ form.username }}
+
+                        {% if form.username.errors %}
+                            <div class="registro-error">
+                                {% for error in form.username.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- NOMBRE Y APELLIDO -->
+                    <div class="registro-fila">
+
+                        <div class="registro-campo">
+
+                            <label for="{{ form.first_name.id_for_label }}">
+                                Nombre
+                            </label>
+
+                            {{ form.first_name }}
+
+                            {% if form.first_name.errors %}
+                                <div class="registro-error">
+                                    {% for error in form.first_name.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="registro-campo">
+
+                            <label for="{{ form.last_name.id_for_label }}">
+                                Apellido
+                            </label>
+
+                            {{ form.last_name }}
+
+                            {% if form.last_name.errors %}
+                                <div class="registro-error">
+                                    {% for error in form.last_name.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+                    <div class="registro-campo">
+
+                        <label for="{{ form.email.id_for_label }}">
+                            Correo electrónico
+                        </label>
+
+                        {{ form.email }}
+
+                        {% if form.email.errors %}
+                            <div class="registro-error">
+                                {% for error in form.email.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- CONTRASEÑA -->
+                    <div class="registro-campo">
+
+                        <label for="{{ form.password1.id_for_label }}">
+                            Contraseña
+                        </label>
+
+                        {{ form.password1 }}
+
+                        {% if form.password1.errors %}
+                            <div class="registro-error">
+                                {% for error in form.password1.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- CONFIRMAR CONTRASEÑA -->
+                    <div class="registro-campo">
+
+                        <label for="{{ form.password2.id_for_label }}">
+                            Confirmar contraseña
+                        </label>
+
+                        {{ form.password2 }}
+
+                        {% if form.password2.errors %}
+                            <div class="registro-error">
+                                {% for error in form.password2.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <button type="submit" class="registro-boton">
+                        Crear cuenta
+                    </button>
+
+                </form>
+
+
+                <div class="registro-footer">
+
+                    <p>
+                        ¿Ya tienes una cuenta?
+
+                        <a href="{% url 'accounts:login' %}">
+                            Iniciar sesión
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,303 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ votacion.nombre }} | Festival de la Leyenda Vallenata 2027
+{% endblock %}
+
+
+{% block content %}
+
+<section class="seccion">
+
+    <div class="contenedor">
+
+
+        <!-- =====================================================
+             ENCABEZADO DE LA VOTACIÓN
+             ===================================================== -->
+
+        <p class="hero-etiqueta">
+            {{ votacion.categoria.nombre }}
+        </p>
+
+        <h1 class="titulo-seccion">
+            {{ votacion.nombre }}
+        </h1>
+
+        {% if votacion.descripcion %}
+
+            <p class="subtitulo-seccion">
+                {{ votacion.descripcion }}
+            </p>
+
+        {% endif %}
+
+
+
+        <!-- =====================================================
+             MENSAJES DEL SISTEMA
+             ===================================================== -->
+
+        {% if messages %}
+
+            <div class="mensajes-sistema">
+
+                {% for message in messages %}
+
+                    <div class="mensaje {{ message.tags }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+
+
+        <!-- =====================================================
+             ADMINISTRADOR / SUPERUSUARIO / JURADO
+             NO PUEDEN VOTAR
+             ===================================================== -->
+
+        {% if user.is_authenticated and not puede_votar %}
+
+            <div class="estado-voto">
+
+                <span class="estado-voto-icono">
+                    !
+                </span>
+
+                <div>
+
+                    <strong>
+                        Vista de consulta
+                    </strong>
+
+                    <p>
+                        Tu perfil puede consultar esta votación,
+                        pero no está habilitado para emitir votos.
+                    </p>
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+
+
+        <!-- =====================================================
+             VOTANTE QUE YA PARTICIPÓ
+             ===================================================== -->
+
+        {% if puede_votar and voto_usuario %}
+
+            <div class="estado-voto">
+
+                <span class="estado-voto-icono">
+                    ✓
+                </span>
+
+                <div>
+
+                    <strong>
+                        Tu voto ya fue registrado
+                    </strong>
+
+                    <p>
+                        Elegiste a
+                        <strong>
+                            {{ voto_usuario.opcion.nombre }}
+                        </strong>.
+                    </p>
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+
+
+        <!-- =====================================================
+             PARTICIPANTES / OPCIONES
+             ===================================================== -->
+
+        <div class="grid-categorias">
+
+            {% for opcion in opciones %}
+
+                <article class="tarjeta participante-card">
+
+
+                    <!-- =========================================
+                         IMAGEN DEL PARTICIPANTE
+                         ========================================= -->
+
+                    {% if opcion.imagen %}
+
+                        <img
+                            src="{{ opcion.imagen.url }}"
+                            alt="{{ opcion.nombre }}"
+                            class="imagen-tarjeta"
+                        >
+
+                    {% endif %}
+
+
+
+                    <div class="contenido-tarjeta">
+
+
+                        <!-- =====================================
+                             CIUDAD
+                             ===================================== -->
+
+                        {% if opcion.ciudad %}
+
+                            <p class="categoria-edicion">
+                                {{ opcion.ciudad }}
+                            </p>
+
+                        {% endif %}
+
+
+
+                        <!-- =====================================
+                             NOMBRE
+                             ===================================== -->
+
+                        <h2>
+                            {{ opcion.nombre }}
+                        </h2>
+
+
+
+                        <!-- =====================================
+                             DESCRIPCIÓN
+                             ===================================== -->
+
+                        {% if opcion.descripcion %}
+
+                            <p>
+                                {{ opcion.descripcion }}
+                            </p>
+
+                        {% endif %}
+
+
+
+                        <!-- =====================================
+                             ADMIN / SUPERUSUARIO / JURADO
+                             ===================================== -->
+
+                        {% if user.is_authenticated and not puede_votar %}
+
+                            <div class="voto-cerrado">
+                                Vista de consulta · No habilitado para votar
+                            </div>
+
+
+
+                        <!-- =====================================
+                             VOTANTE QUE YA VOTÓ
+                             ===================================== -->
+
+                        {% elif voto_usuario %}
+
+
+                            {% if voto_usuario.opcion.id == opcion.id %}
+
+                                <div class="opcion-seleccionada">
+                                    ✓ Tu elección
+                                </div>
+
+                            {% else %}
+
+                                <div class="voto-cerrado">
+                                    Voto ya registrado
+                                </div>
+
+                            {% endif %}
+
+
+
+                        <!-- =====================================
+                             VOTANTE AUTORIZADO
+                             ===================================== -->
+
+                        {% elif puede_votar %}
+
+                            <form
+                                method="post"
+                                action="{% url 'votaciones:registrar_voto' opcion.pk %}"
+                                class="form-votar"
+                            >
+
+                                {% csrf_token %}
+
+                                <button
+                                    type="submit"
+                                    class="boton-votar"
+                                >
+                                    Votar por {{ opcion.nombre }}
+                                </button>
+
+                            </form>
+
+
+
+                        <!-- =====================================
+                             USUARIO SIN INICIAR SESIÓN
+                             ===================================== -->
+
+                        {% else %}
+
+                            <a
+                                href="{% url 'accounts:login' %}?next={{ request.path }}"
+                                class="boton-votar"
+                            >
+                                Inicia sesión para votar
+                            </a>
+
+                        {% endif %}
+
+
+                    </div>
+
+                </article>
+
+
+            {% empty %}
+
+
+                <!-- =============================================
+                     SIN PARTICIPANTES
+                     ============================================= -->
+
+                <article class="tarjeta">
+
+                    <h2>
+                        No hay participantes disponibles
+                    </h2>
+
+                    <p>
+                        Esta votación todavía no tiene opciones
+                        registradas.
+                    </p>
+
+                </article>
+
+
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+
+</section>
+
+{% endblock %}

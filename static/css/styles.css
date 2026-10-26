@@ -1,0 +1,2203 @@
+/* =========================================================
+   FESTIVAL DE LA LEYENDA VALLENATA 2027
+   IDENTIDAD VISUAL GENERAL
+   ========================================================= */
+
+
+/* =========================================================
+   PALETA DE COLORES
+   ========================================================= */
+
+:root {
+
+    /* VERDES */
+    --verde-principal: #0B4F3F;
+    --verde-profundo: #073A31;
+    --verde-suave: #356F5F;
+
+    /* FONDOS CÁLIDOS */
+    --marfil: #FFF9EF;
+    --crema: #F8EEDC;
+    --crema-profundo: #EFE0C4;
+    --champagne: #E8D5AD;
+
+    /* ACENTOS */
+    --terracota: #B95A3D;
+    --rojo-acento: #B8322C;
+
+    /* DORADOS */
+    --dorado: #C8A15A;
+    --dorado-suave: #E2C98F;
+
+    /* TEXTO */
+    --texto: #29231E;
+    --texto-suave: #6C6258;
+
+    /* BLANCO PARA TEXTO SOBRE FONDOS OSCUROS */
+    --blanco: #FFFFFF;
+
+    /* SOMBRAS */
+    --sombra:
+        0 10px 30px rgba(31, 42, 36, 0.09);
+
+    --sombra-grande:
+        0 22px 55px rgba(31, 42, 36, 0.14);
+}
+
+
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    margin: 0;
+
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    color: var(--texto);
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--marfil) 0%,
+            var(--crema) 100%
+        );
+
+    min-height: 100vh;
+}
+
+
+a {
+    color: var(--verde-principal);
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+a:hover {
+    color: var(--terracota);
+}
+
+
+img {
+    display: block;
+
+    max-width: 100%;
+}
+
+
+main {
+    min-height: 70vh;
+}
+
+
+.contenedor {
+    width: min(1180px, 90%);
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.encabezado {
+    min-height: 112px;
+    padding: 14px 6.5%;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 249, 239, 0.98) 0%,
+            rgba(255, 249, 239, 0.95) 68%,
+            rgba(255, 249, 239, 0.88) 100%
+        );
+    border-bottom:
+        1px solid rgba(200, 161, 90, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow:
+        0 5px 25px rgba(31, 42, 36, 0.06);
+}
+.encabezado::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -24px;
+    height: 24px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 249, 239, 0.88) 0%,
+            rgba(255, 249, 239, 0.45) 45%,
+            rgba(255, 249, 239, 0.12) 75%,
+            rgba(255, 249, 239, 0) 100%
+        );
+    pointer-events: none;
+}
+
+/* =========================================================
+   MARCA / LOGO TEXTUAL
+   ========================================================= */
+
+.marca {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.marca-logo {
+    width: 185px;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+     transition:
+        transform 0.25s ease;
+}
+.marca-logo:hover {
+    transform: scale(1.025);
+}
+
+
+/* =========================================================
+   NAVEGACIÓN
+   ========================================================= */
+
+.navegacion {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 32px;
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.25px;
+}
+
+.navegacion a {
+    color: #064C3B;
+    font-weight: 600;
+    position: relative;
+}
+.navegacion a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    width: 0;
+    height: 1.5px;
+    background:
+        var(--dorado);
+    transition:
+        width 0.25s ease;
+}
+.navegacion a:hover::after {
+    width: 100%;
+}
+
+.navegacion a:hover {
+    color: var(--terracota);
+}
+
+.boton-registro {
+    padding: 10px 17px;
+    border-radius: 7px;
+    background: var(--verde-principal);
+    color: var(--blanco) !important;
+}
+
+.boton-registro:hover {
+    background: var(--verde-profundo);
+    color: var(--blanco) !important;
+}
+
+
+/* =========================================================
+   HERO PRINCIPAL
+   ========================================================= */
+
+.hero-principal {
+    position: relative;
+    width: 100%;
+    min-height:
+        calc(100vh - 96px);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color:
+        var(--crema);
+}
+
+
+/* =========================================================
+   IMAGEN DEL AMANECER
+   ========================================================= */
+
+.hero-fondo {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image:
+        url("../images/amanecer-vallenato.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    /*
+       Invierte la imagen para dejar los instrumentos
+       principalmente al lado derecho.
+    */
+
+    transform:
+        scaleX(-1);
+}
+
+
+/* =========================================================
+   DEGRADADO SOBRE EL AMANECER
+   ========================================================= */
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 249, 239, 0.94) 0%,
+            rgba(255, 249, 239, 0.86) 25%,
+            rgba(248, 238, 220, 0.64) 42%,
+            rgba(248, 238, 220, 0.25) 58%,
+            rgba(248, 238, 220, 0.05) 72%,
+            rgba(248, 238, 220, 0.00) 100%
+        );
+}
+
+
+/* =========================================================
+   CONTENEDOR DEL HERO
+   ========================================================= */
+
+.hero-contenedor {
+    position: relative;
+    z-index: 3;
+    width: min(1380px, 88%);
+    margin: 0 auto;
+    padding: 90px 0;
+}
+
+
+.hero-contenido {
+    width: min(610px, 52%);
+}
+
+
+/* =========================================================
+   TEXTO PEQUEÑO DEL HERO
+   ========================================================= */
+
+.hero-etiqueta {
+    margin: 0 0 22px;
+    color: var(--terracota);
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    text-shadow: none;
+}
+
+
+/* =========================================================
+   TITULO PRINCIPAL
+   ========================================================= */
+
+.hero-titulo {
+    margin: 0;
+    max-width: 650px;
+    color: #064C3B;
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size:
+        clamp(
+            64px,
+            6.5vw,
+            96px
+        );
+
+    font-weight: 700;
+    line-height: 0.90;
+    letter-spacing: -2px;
+    text-shadow: none;
+}
+
+
+.hero-titulo span {
+    display: block;
+    color: #B8322C;
+}
+
+
+/* =========================================================
+   DESCRIPCIÓN DEL HERO
+   ========================================================= */
+
+.hero-descripcion {
+    max-width: 525px;
+    margin: 30px 0 0;
+    color: var(--texto);
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.75;
+    text-shadow: none;
+}
+
+
+/* =========================================================
+   BOTONES DEL HERO
+   ========================================================= */
+
+.hero-acciones {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 34px;
+}
+
+
+.hero-boton-principal,
+.hero-boton-secundario {
+    min-height: 50px;
+    padding: 0 27px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-decoration: none;
+}
+
+
+/* BOTÓN VERDE */
+
+.hero-boton-principal {
+    background-color:
+        var(--verde-principal);
+    color:
+        var(--blanco);
+    box-shadow:
+        0 8px 20px
+        rgba(11, 79, 63, 0.16);
+}
+
+
+.hero-boton-principal:hover {
+    background-color:
+        var(--verde-profundo);
+    color:
+        var(--blanco);
+    transform:
+        translateY(-2px);
+    box-shadow:
+        0 12px 24px
+        rgba(11, 79, 63, 0.22);
+}
+
+
+/* BOTÓN SECUNDARIO */
+
+.hero-boton-secundario {
+    border:
+        1.5px solid
+        var(--verde-principal);
+    background:
+        rgba(255, 249, 239, 0.72);
+    color:
+        var(--verde-principal);
+}
+
+
+.hero-boton-secundario:hover {
+    background:
+        var(--verde-principal);
+    color:
+        var(--blanco);
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   SECCIONES
+   ========================================================= */
+
+.seccion {
+    padding: 90px 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--marfil) 0%,
+            var(--crema) 100%
+        );
+}
+
+
+.titulo-seccion {
+    margin: 0 0 14px;
+    color:
+        var(--verde-profundo);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size:
+        clamp(
+            38px,
+            4vw,
+            54px
+        );
+    font-weight: 600;
+    line-height: 1;
+}
+
+
+.subtitulo-seccion {
+    max-width: 720px;
+    margin: 0 0 42px;
+    color:
+        var(--texto-suave);
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   CATEGORÍAS
+   ========================================================= */
+
+.grid-categorias {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 28px;
+}
+
+
+/* =========================================================
+   TARJETAS
+   ========================================================= */
+
+.tarjeta {
+    overflow: hidden;
+    padding: 28px;
+    border-radius: 14px;
+    background:
+        var(--marfil);
+    border:
+        1px solid
+        rgba(200, 161, 90, 0.32);
+    box-shadow:
+        var(--sombra);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.tarjeta:hover {
+    transform:
+        translateY(-5px);
+    border-color:
+        rgba(200, 161, 90, 0.60);
+    box-shadow:
+        var(--sombra-grande);
+}
+
+
+.tarjeta h2,
+.tarjeta h3 {
+    margin:
+        8px 0 12px;
+    color:
+        var(--verde-profundo);
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+
+.tarjeta p {
+    color:
+        var(--texto-suave);
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+
+.imagen-tarjeta {
+    width: 100%;
+    height: 320px;
+    object-fit: contain;
+    object-position: center;
+    background: rgba(255, 249, 239, 0.65);
+    border-radius: 16px 16px 0 0;
+}
+
+
+.contenido-tarjeta {
+    width: 100%;
+}
+
+
+.categoria-edicion {
+    margin-bottom: 6px;
+    color:
+        var(--terracota);
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+
+.tarjeta-enlace {
+    display: inline-block;
+    margin-top: 14px;
+    color:
+        var(--rojo-acento);
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+
+.tarjeta-enlace:hover {
+    color:
+        var(--verde-principal);
+}
+
+/* =========================================================
+   FORMULARIOS
+   ========================================================= */
+
+.contenedor-formulario {
+    width: min(620px, 90%);
+    margin: 70px auto;
+    padding: 42px;
+    border-radius: 16px;
+    background:
+        var(--marfil);
+    border:
+        1px solid
+        rgba(200, 161, 90, 0.25);
+    box-shadow:
+        var(--sombra-grande);
+}
+
+
+.contenedor-formulario h1 {
+    margin-top: 0;
+
+    color:
+        var(--verde-profundo);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 46px;
+
+    font-weight: 600;
+}
+
+
+.contenedor-formulario form p {
+    margin-bottom: 20px;
+}
+
+
+.contenedor-formulario label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color:
+        var(--verde-profundo);
+
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.contenedor-formulario input,
+.contenedor-formulario select,
+.contenedor-formulario textarea {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border:
+        1px solid
+        #D7C8AE;
+
+    border-radius: 7px;
+
+    background:
+        #FFFCF7;
+
+    color:
+        var(--texto);
+
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+.contenedor-formulario input:focus,
+.contenedor-formulario select:focus,
+.contenedor-formulario textarea:focus {
+    border-color:
+        var(--dorado);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(200, 161, 90, 0.12);
+}
+
+
+.contenedor-formulario ul {
+    padding-left: 22px;
+
+    color:
+        var(--texto-suave);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   BOTÓN DE FORMULARIO
+   ========================================================= */
+
+.boton-formulario {
+    width: 100%;
+
+    min-height: 50px;
+
+    margin-top: 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background:
+        var(--verde-principal);
+
+    color:
+        var(--blanco);
+
+    cursor: pointer;
+
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.4px;
+}
+
+
+.boton-formulario:hover {
+    background:
+        var(--verde-profundo);
+}
+
+
+/* =========================================================
+   PIE DE PÁGINA
+   ========================================================= */
+
+.pie {
+    padding: 38px 20px;
+
+    background:
+        var(--verde-profundo);
+
+    color:
+        var(--crema);
+
+    border-top:
+        3px solid
+        var(--dorado);
+
+    text-align: center;
+
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    font-size: 13px;
+
+    letter-spacing: 0.3px;
+}
+
+
+.pie p {
+    margin: 5px 0;
+}
+
+
+/* =========================================================
+   PANTALLAS GRANDES
+   ========================================================= */
+
+@media (min-width: 1600px) {
+
+    .hero-contenedor {
+        width:
+            min(1500px, 86%);
+    }
+
+
+    .hero-contenido {
+        width: 610px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .encabezado {
+        padding:
+            16px 5%;
+    }
+
+
+    .hero-principal {
+        min-height: 720px;
+    }
+
+
+    .hero-overlay {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(255, 249, 239, 0.96) 0%,
+                rgba(255, 249, 239, 0.88) 38%,
+                rgba(248, 238, 220, 0.55) 65%,
+                rgba(248, 238, 220, 0.08) 100%
+            );
+    }
+
+
+    .hero-contenedor {
+        width: 88%;
+
+        padding: 75px 0;
+    }
+
+
+    .hero-contenido {
+        width:
+            min(590px, 65%);
+    }
+
+
+    .hero-titulo {
+        font-size:
+            clamp(
+                54px,
+                8vw,
+                76px
+            );
+    }
+
+
+    .hero-descripcion {
+        font-size: 17px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .encabezado {
+        position: relative;
+
+        min-height: auto;
+
+        padding:
+            16px 6%;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 16px;
+    }
+
+
+    .marca-texto strong {
+        font-size: 24px;
+    }
+
+
+    .marca-texto span:first-child {
+        font-size: 14px;
+    }
+
+
+    .marca-texto .anio {
+        font-size: 15px;
+    }
+
+
+    .navegacion {
+        width: 100%;
+
+        justify-content: flex-start;
+
+        gap: 15px;
+
+        font-size: 12px;
+    }
+
+
+    .hero-principal {
+        min-height: 760px;
+
+        align-items: flex-end;
+    }
+
+
+    .hero-fondo {
+        background-position:
+            58% center;
+    }
+
+
+    .hero-overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(255, 249, 239, 0.02) 0%,
+                rgba(255, 249, 239, 0.15) 30%,
+                rgba(248, 238, 220, 0.87) 59%,
+                rgba(255, 249, 239, 0.98) 100%
+            );
+    }
+
+
+    .hero-contenedor {
+        width: 88%;
+
+        padding:
+            320px 0 55px;
+    }
+
+
+    .hero-contenido {
+        width: 100%;
+    }
+
+
+.hero-etiqueta {
+    margin: 0 0 24px;
+    color: var(--terracota);
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2.6px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    text-shadow: none;
+}
+
+    .hero-titulo {
+        max-width: 100%;
+        font-size:
+            clamp(
+                48px,
+                14vw,
+                62px
+            );
+
+        line-height: 0.91;
+        letter-spacing: -1.5px;
+    }
+
+
+    .hero-descripcion {
+        margin-top: 24px;
+        font-size: 16px;
+        line-height: 1.65;
+    }
+
+    .hero-acciones {
+        width: 100%;
+        margin-top: 28px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-boton-principal,
+    .hero-boton-secundario {
+        width: 100%;
+    }
+
+    .seccion {
+        padding:
+            60px 0;
+    }
+
+    .titulo-seccion {
+        font-size: 40px;
+    }
+
+    .subtitulo-seccion {
+        font-size: 15px;
+    }
+
+    .grid-categorias {
+        grid-template-columns: 1fr;
+    }
+    .contenedor-formulario {
+        margin:
+            35px auto;
+        padding:
+            30px 23px;
+    }
+    .contenedor-formulario h1 {
+        font-size: 38px;
+    }
+
+}
+/* =========================================================
+   ÁREA DE SESIÓN DEL USUARIO
+   ========================================================= */
+
+.sesion-usuario {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: 10px;
+    padding-left: 24px;
+    border-left:
+        1px solid rgba(200, 161, 90, 0.55);
+}
+
+.usuario {
+    color: #064C3B;
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+.form-logout {
+    margin: 0;
+}
+
+
+.boton-enlace {
+    padding: 9px 15px;
+    border:
+        1px solid rgba(184, 50, 44, 0.35);
+    border-radius: 7px;
+    background:
+        transparent;
+    color:
+        var(--rojo-acento);
+
+    cursor: pointer;
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    font-size: 13px;
+    font-weight: 600;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.boton-enlace:hover {
+    background:
+        var(--rojo-acento);
+
+    color:
+        var(--blanco);
+}
+/* =========================================================
+   SISTEMA DE VOTACIÓN
+   ========================================================= */
+
+.mensajes-sistema {
+    margin-bottom: 30px;
+}
+
+.mensaje {
+    padding: 15px 18px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+    font-size: 14px;
+}
+
+.mensaje.success {
+    background: #E6F1EB;
+    border:
+        1px solid #A8CCBA;
+    color: #075442;
+}
+
+.mensaje.warning {
+    background: #FFF1D5;
+    border:
+        1px solid #D8B66A;
+    color: #76561A;
+}
+
+/* VOTO YA REGISTRADO */
+
+.estado-voto {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    max-width: 650px;
+    margin-bottom: 40px;
+    padding: 20px 24px;
+    background:
+        rgba(255, 249, 239, 0.92);
+    border:
+        1px solid var(--dorado);
+    border-radius: 12px;
+    box-shadow:
+        var(--sombra);
+}
+
+
+.estado-voto-icono {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background:
+        var(--verde-principal);
+    color:
+        var(--blanco);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.estado-voto strong {
+    color:
+        var(--verde-profundo);
+}
+.estado-voto p {
+    margin:
+        4px 0 0;
+    color:
+        var(--texto-suave);
+    font-size: 14px;
+}
+
+
+/* PARTICIPANTES */
+
+.participante-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-votar {
+    margin-top: 20px;
+}
+
+.boton-votar {
+    width: 100%;
+    min-height: 48px;
+    padding:
+        0 20px;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        var(--verde-principal);
+    color:
+        var(--blanco);
+    cursor: pointer;
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.boton-votar:hover {
+    background:
+        var(--verde-profundo);
+    color:
+        var(--blanco);
+    transform:
+        translateY(-2px);
+}
+
+
+.opcion-seleccionada {
+    margin-top: 20px;
+    padding:
+        13px 16px;
+    border:
+        1px solid var(--dorado);
+    border-radius: 8px;
+    background:
+        #EDF4F0;
+    color:
+        var(--verde-principal);
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+}
+.voto-cerrado {
+    margin-top: 20px;
+    padding:
+        13px 16px;
+    border-radius: 8px;
+    background:
+        var(--crema-profundo);
+    color:
+        var(--texto-suave);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+}
+/* =========================================================
+   DETALLE DE CATEGORÍA
+   ========================================================= */
+
+.categoria-info {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 12px 18px;
+    border: 1px solid var(--champagne);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.45);
+    color: var(--verde-principal);
+}
+
+.categoria-info-etiqueta {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--terracota);
+}
+
+.encabezado-bloque {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 55px;
+    margin-bottom: 28px;
+}
+
+.subtitulo-bloque {
+    margin: 6px 0 0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--verde-principal);
+}
+
+.votacion-card {
+    background: rgba(255, 249, 239, 0.62);
+    border: 1px solid rgba(200, 161, 90, 0.35);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.votacion-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-grande);
+    background: rgba(255, 249, 239, 0.82);
+}
+
+.datos-votacion {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 24px 0;
+}
+
+.dato-votacion {
+    min-width: 180px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: var(--crema);
+}
+
+.dato-votacion span {
+    display: block;
+    margin-bottom: 5px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--terracota);
+}
+
+.dato-votacion strong {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--verde-principal);
+}
+
+.volver-categorias {
+    margin-top: 35px;
+}
+
+.enlace-volver {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: var(--rojo-acento);
+    text-decoration: none;
+}
+
+.enlace-volver:hover {
+    text-decoration: underline;
+}
+/* =========================================================
+   FONDO - DETALLE DE CATEGORÍA
+   ========================================================= */
+
+.categoria-detalle {
+    min-height: calc(100vh - 110px);
+
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(255, 249, 239, 0.45) 0%,
+            rgba(255, 249, 239, 0.68) 35%,
+            rgba(255, 249, 239, 0.88) 72%,
+            rgba(255, 249, 239, 1) 100%
+        ),
+        url("../images/instrumentos-vallenatos.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/* =========================================================
+   FONDO CON IMAGEN - DETALLE DE CATEGORÍA
+   ========================================================= */
+
+.categoria-detalle {
+    position: relative;
+    min-height: calc(100vh - 110px);
+    overflow: hidden;
+    background: var(--marfil);
+}
+
+/* IMAGEN DE FONDO */
+.categoria-detalle::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(255, 249, 239, 0.18) 0%,
+            rgba(255, 249, 239, 0.30) 35%,
+            rgba(255, 249, 239, 0.55) 72%,
+            rgba(255, 249, 239, 0.88) 100%
+        ),
+        url("../images/instrumentos-vallenatos.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: 0;
+}
+
+/* CONTENIDO SOBRE LA IMAGEN */
+.categoria-detalle > .contenedor {
+    position: relative;
+    z-index: 1;
+}
+/* =========================================================
+   LOGIN - FESTIVAL VALLENATO
+   ========================================================= */
+
+.auth-page {
+    position: relative;
+    min-height: calc(100vh - 110px);
+    padding: 75px 0 95px;
+    overflow: hidden;
+}
+
+
+/* FONDO DEL LOGIN */
+.auth-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(255, 249, 239, 0.72) 0%,
+            rgba(255, 249, 239, 0.55) 35%,
+            rgba(255, 249, 239, 0.20) 65%,
+            rgba(255, 249, 239, 0.05) 100%
+        ),
+        url("../images/collage-leyendas-vallenatas.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: 0;
+}
+
+
+/* CONTENIDO SOBRE EL FONDO */
+.auth-page .auth-contenedor {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* DISTRIBUCIÓN */
+.auth-layout {
+    display: grid;
+    grid-template-columns: 1fr 500px;
+    gap: 70px;
+    align-items: center;
+}
+
+
+/* TEXTO IZQUIERDO */
+.auth-info {
+    max-width: 650px;
+}
+
+.auth-titulo {
+    margin: 10px 0 18px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(58px, 6vw, 82px);
+    font-weight: 600;
+    line-height: 1;
+
+    color: var(--verde-principal);
+}
+
+.auth-descripcion {
+    max-width: 610px;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+
+    color: var(--texto);
+}
+
+
+/* TARJETA */
+.auth-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px;
+    background: rgba(255, 249, 239, 0.62);
+    border: 1px solid rgba(200, 161, 90, 0.38);
+    border-radius: 24px;
+    box-shadow:
+        0 22px 55px rgba(31, 42, 36, 0.16);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+
+/* CABECERA DE LA TARJETA */
+.auth-card-header {
+    margin-bottom: 28px;
+}
+
+.auth-card-header h2 {
+    margin: 0 0 8px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 40px;
+    font-weight: 600;
+
+    color: var(--verde-principal);
+}
+
+.auth-card-header p {
+    margin: 0;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+
+    color: var(--texto-suave);
+}
+
+
+/* FORMULARIO */
+.auth-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-formulario label {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    color: var(--verde-principal);
+}
+
+
+/* INPUTS */
+.input-auth {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 14px 16px;
+
+    border: 1px solid rgba(11, 79, 63, 0.25);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+
+    color: var(--texto);
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.input-auth:focus {
+    border-color: var(--verde-principal);
+
+    background: rgba(255, 255, 255, 0.98);
+
+    box-shadow:
+        0 0 0 3px rgba(11, 79, 63, 0.10);
+}
+
+
+/* BOTÓN */
+.boton-auth {
+    width: 100%;
+
+    margin-top: 5px;
+    padding: 15px 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--verde-principal);
+    color: white;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.boton-auth:hover {
+    background: var(--verde-profundo);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(11, 79, 63, 0.18);
+}
+
+
+/* PIE */
+.auth-footer {
+    margin-top: 25px;
+    padding-top: 22px;
+
+    border-top:
+        1px solid rgba(200, 161, 90, 0.30);
+
+    text-align: center;
+}
+
+.auth-footer p {
+    margin: 0;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+
+    color: var(--texto-suave);
+}
+
+.auth-footer a {
+    color: var(--rojo-acento);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* ERRORES */
+.campo-error {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    color: var(--rojo-acento);
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 950px) {
+
+    .auth-layout {
+        grid-template-columns: 1fr;
+        gap: 38px;
+    }
+
+    .auth-card {
+        max-width: 600px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .auth-page {
+        padding: 50px 0 70px;
+    }
+
+    .auth-card {
+        padding: 28px 22px;
+    }
+
+    .auth-titulo {
+        font-size: 52px;
+    }
+
+}
+/* =========================================================
+   REGISTRO - FESTIVAL VALLENATO
+   ========================================================= */
+
+.registro-page {
+    position: relative;
+    min-height: calc(100vh - 110px);
+    padding: 70px 0 90px;
+    overflow: hidden;
+}
+
+
+/* FONDO */
+.registro-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(255, 249, 239, 0.12) 0%,
+            rgba(255, 249, 239, 0.22) 35%,
+            rgba(255, 249, 239, 0.52) 65%,
+            rgba(255, 249, 239, 0.78) 100%
+        ),
+        url("../images/registro-colombia-vallenata.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: 0;
+}
+
+
+/* CONTENIDO */
+.registro-contenedor {
+    position: relative;
+    z-index: 1;
+}
+
+
+.registro-layout {
+    display: grid;
+    grid-template-columns: 1fr minmax(430px, 560px);
+
+    gap: 70px;
+    align-items: center;
+}
+
+
+/* =========================================================
+   PRESENTACIÓN
+   ========================================================= */
+
+.registro-info {
+    max-width: 620px;
+}
+
+
+.registro-titulo {
+    margin: 10px 0 18px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(58px, 6vw, 84px);
+    font-weight: 600;
+
+    line-height: 0.98;
+
+    color: var(--verde-principal);
+}
+
+
+.registro-descripcion {
+    max-width: 540px;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+
+    color: var(--texto);
+}
+
+
+/* =========================================================
+   TARJETA
+   ========================================================= */
+
+.registro-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 38px;
+    border-radius: 24px;
+    background: rgba(255, 249, 239, 0.58);
+    border: 1px solid rgba(200, 161, 90, 0.38);
+    box-shadow:
+        0 22px 55px rgba(31, 42, 36, 0.17);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+
+.registro-card-header {
+    margin-bottom: 26px;
+}
+
+
+.registro-card-header h2 {
+    margin: 0 0 7px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 40px;
+    font-weight: 600;
+
+    color: var(--verde-principal);
+}
+
+
+.registro-card-header p {
+    margin: 0;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+
+    color: var(--texto-suave);
+}
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+
+.registro-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+.registro-fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+}
+
+
+.registro-campo {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.registro-campo label {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    color: var(--verde-principal);
+}
+
+
+/* Django genera los inputs automáticamente */
+.registro-campo input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 14px 15px;
+
+    border: 1px solid rgba(11, 79, 63, 0.25);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+
+    color: var(--texto);
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.registro-campo input:focus {
+    border-color: var(--verde-principal);
+
+    background: rgba(255, 255, 255, 0.98);
+
+    box-shadow:
+        0 0 0 3px rgba(11, 79, 63, 0.10);
+}
+
+
+/* =========================================================
+   BOTÓN
+   ========================================================= */
+
+.registro-boton {
+    width: 100%;
+
+    margin-top: 7px;
+    padding: 15px 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--verde-principal);
+    color: var(--blanco);
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.registro-boton:hover {
+    background: var(--verde-profundo);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(11, 79, 63, 0.20);
+}
+
+
+/* =========================================================
+   PIE
+   ========================================================= */
+
+.registro-footer {
+    margin-top: 24px;
+    padding-top: 21px;
+
+    border-top:
+        1px solid rgba(200, 161, 90, 0.30);
+
+    text-align: center;
+}
+
+
+.registro-footer p {
+    margin: 0;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+
+    color: var(--texto-suave);
+}
+
+
+.registro-footer a {
+    color: var(--rojo-acento);
+
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
+.registro-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   ERRORES
+   ========================================================= */
+
+.registro-error {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+
+    color: var(--rojo-acento);
+}
+
+
+.registro-error p {
+    margin: 0;
+}
+
+
+.registro-error-general {
+    padding: 13px 15px;
+
+    border-radius: 10px;
+
+    background: rgba(184, 50, 44, 0.10);
+    border: 1px solid rgba(184, 50, 44, 0.20);
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+
+    color: var(--rojo-acento);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+    .registro-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .registro-card {
+        max-width: 650px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .registro-page {
+        padding: 50px 0 70px;
+    }
+
+    .registro-card {
+        padding: 27px 21px;
+    }
+
+    .registro-fila {
+        grid-template-columns: 1fr;
+    }
+
+    .registro-titulo {
+        font-size: 52px;
+    }
+
+}
+/* =========================================================
+   IMÁGENES DE CATEGORÍAS
+   ========================================================= */
+
+.categoria-imagen-contenedor {
+    position: relative;
+
+    width: 100%;
+    height: 240px;
+
+    overflow: hidden;
+
+    border-radius: 18px 18px 0 0;
+}
+
+
+.categoria-imagen {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
+}
+
+
+/* DEGRADADO SOBRE LA FOTO */
+.categoria-imagen-contenedor::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(7, 58, 49, 0.02) 25%,
+            rgba(7, 58, 49, 0.16) 70%,
+            rgba(7, 58, 49, 0.32) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* EFECTO AL PASAR EL MOUSE */
+.tarjeta:hover .categoria-imagen {
+    transform: scale(1.05);
+}
+/* =========================================================
+   FONDO GENERAL - PÁGINA DE CATEGORÍAS
+   ========================================================= */
+
+.categorias-page {
+    position: relative;
+    min-height: calc(100vh - 110px);
+    overflow: hidden;
+}
+
+
+/* IMAGEN DE FONDO */
+.categorias-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(255, 249, 239, 0.20) 0%,
+            rgba(255, 249, 239, 0.38) 35%,
+            rgba(255, 249, 239, 0.64) 70%,
+            rgba(255, 249, 239, 0.90) 100%
+        ),
+        url("../images/fondo-categorias-vallenato.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: 0;
+}
+
+
+/* TODO EL CONTENIDO SOBRE LA FOTO */
+.categorias-page > .contenedor {
+    position: relative;
+    z-index: 1;
+}
+
+/* TARJETAS SOBRE EL FONDO */
+.categorias-page .tarjeta {
+    background: rgba(255, 249, 239, 0.68);
+
+    border: 1px solid rgba(200, 161, 90, 0.35);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    box-shadow: var(--sombra);
+}
+.categorias-page .tarjeta:hover {
+    background: rgba(255, 249, 239, 0.78);
+
+    transform: translateY(-4px);
+
+    box-shadow: var(--sombra-grande);
+}

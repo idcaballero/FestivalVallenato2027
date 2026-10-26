@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ categoria.nombre }} | Festival de la Leyenda Vallenata 2027
+{% endblock %}
+
+
+{% block content %}
+
+<section class="seccion categoria-detalle">
+
+    <div class="contenedor">
+
+        <!-- ENCABEZADO -->
+
+        <h1 class="titulo-seccion">
+            {{ categoria.nombre }}
+        </h1>
+
+        {% if categoria.descripcion %}
+            <p class="subtitulo-seccion">
+                {{ categoria.descripcion }}
+            </p>
+        {% endif %}
+
+
+        <!-- VOTACIONES -->
+
+        <div class="encabezado-bloque">
+
+            <div>
+
+                <p class="hero-etiqueta">
+                    Participa
+                </p>
+
+                <h2 class="subtitulo-bloque">
+                    Votaciones disponibles
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="grid-categorias">
+
+            {% for votacion in votaciones %}
+
+                <article class="tarjeta votacion-card">
+
+                    <div class="contenido-tarjeta">
+
+                        <p class="categoria-edicion">
+                            {{ categoria.nombre }}
+                        </p>
+
+                        <h2>
+                            {{ votacion.nombre }}
+                        </h2>
+
+                        {% if votacion.descripcion %}
+
+                            <p>
+                                {{ votacion.descripcion }}
+                            </p>
+
+                        {% endif %}
+
+
+                        <div class="datos-votacion">
+
+                            {% if votacion.fecha_inicio %}
+
+                                <div class="dato-votacion">
+
+                                    <span>
+                                        Inicio
+                                    </span>
+
+                                    <strong>
+                                        {{ votacion.fecha_inicio|date:"d M Y · H:i" }}
+                                    </strong>
+
+                                </div>
+
+                            {% endif %}
+
+
+                            {% if votacion.fecha_fin %}
+
+                                <div class="dato-votacion">
+
+                                    <span>
+                                        Cierre
+                                    </span>
+
+                                    <strong>
+                                        {{ votacion.fecha_fin|date:"d M Y · H:i" }}
+                                    </strong>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <a
+                            href="{% url 'votaciones:votacion_detalle' votacion.pk %}"
+                            class="boton-votar"
+                        >
+                            Ver participantes
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+            {% empty %}
+
+                <article class="tarjeta">
+
+                    <div class="contenido-tarjeta">
+
+                        <h2>
+                            No hay votaciones disponibles
+                        </h2>
+
+                        <p>
+                            En este momento esta categoría no tiene
+                            votaciones activas.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- VOLVER -->
+
+        <div class="volver-categorias">
+
+            <a
+                href="{% url 'votaciones:categorias' %}"
+                class="enlace-volver"
+            >
+                ← Volver a categorías
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

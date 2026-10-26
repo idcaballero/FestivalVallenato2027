@@ -1,0 +1,186 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+        Festival de la Leyenda Vallenata 2027
+        {% endblock %}
+    </title>
+
+
+    <!-- =====================================================
+         FUENTES
+         ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         CSS DEL PROYECTO
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/styles.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         ENCABEZADO
+         ===================================================== -->
+
+    <header class="encabezado">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="{% url 'votaciones:inicio' %}"
+            class="marca"
+        >
+
+            <img
+                src="{% static 'images/logo-vallenato.png' %}"
+                alt="Festival de la Leyenda Vallenata 2027"
+                class="marca-logo"
+            >
+
+        </a>
+
+
+        <!-- =================================================
+             NAVEGACIÓN
+             ================================================= -->
+
+        <nav class="navegacion">
+
+            <a href="{% url 'votaciones:inicio' %}">
+                Inicio
+            </a>
+
+            <a href="{% url 'votaciones:categorias' %}">
+                Categorías
+            </a>
+
+
+            <!-- =============================================
+                 USUARIO AUTENTICADO
+                 ============================================= -->
+
+            {% if user.is_authenticated %}
+
+                <div class="sesion-usuario">
+
+                    <span class="usuario">
+                        Hola, {{ user.first_name|default:user.username }}
+                    </span>
+
+
+                    <form
+                        method="post"
+                        action="{% url 'accounts:logout' %}"
+                        class="form-logout"
+                    >
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="boton-enlace"
+                        >
+                            Cerrar sesión
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+            <!-- =============================================
+                 USUARIO NO AUTENTICADO
+                 ============================================= -->
+
+            {% else %}
+
+                <a href="{% url 'accounts:login' %}">
+                    Iniciar sesión
+                </a>
+
+                <a
+                    href="{% url 'accounts:registro' %}"
+                    class="boton-registro"
+                >
+                    Crear cuenta
+                </a>
+
+            {% endif %}
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         ===================================================== -->
+
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+         ===================================================== -->
+
+    <footer class="pie">
+
+        <p>
+            Festival de la Leyenda Vallenata 2027
+        </p>
+
+        <p>
+            Música, tradición y cultura vallenata
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
