@@ -78,74 +78,128 @@
         </a>
 
 
+        <!-- =========================================================
+     NAVEGACIÓN PRINCIPAL
+========================================================= -->
+
+<nav class="navegacion">
+
+
+    <!-- =====================================================
+         INICIO
+    ====================================================== -->
+
+    <a href="{% url 'votaciones:inicio' %}">
+        Inicio
+    </a>
+
+
+    <!-- =====================================================
+         CATEGORÍAS
+    ====================================================== -->
+
+    <a href="{% url 'votaciones:categorias' %}">
+        Categorías
+    </a>
+
+
+    <!-- =====================================================
+         OPCIONES PARA USUARIOS AUTENTICADOS
+    ====================================================== -->
+
+    {% if user.is_authenticated %}
+
+
         <!-- =================================================
-             NAVEGACIÓN
-             ================================================= -->
+             MIS VOTOS
+        ================================================== -->
 
-        <nav class="navegacion">
+        <a href="{% url 'votaciones:mis_votos' %}">
+            Mis votos
+        </a>
 
-            <a href="{% url 'votaciones:inicio' %}">
-                Inicio
+
+        <!-- =================================================
+             ADMINISTRACIÓN
+             SOLO STAFF O SUPERUSUARIOS
+        ================================================== -->
+
+        {% if user.is_staff or user.is_superuser %}
+
+            <a href="{% url 'admin:index' %}">
+                Administración
             </a>
 
-            <a href="{% url 'votaciones:categorias' %}">
-                Categorías
-            </a>
+        {% endif %}
+
+
+        <!-- =================================================
+             INFORMACIÓN DEL USUARIO
+        ================================================== -->
+
+        <div class="sesion-usuario">
+
+            <span class="usuario">
+                Hola, {{ user.username }}
+            </span>
 
 
             <!-- =============================================
-                 USUARIO AUTENTICADO
-                 ============================================= -->
+                 CERRAR SESIÓN
+            ============================================== -->
 
-            {% if user.is_authenticated %}
-
-                <div class="sesion-usuario">
-
-                    <span class="usuario">
-                        Hola, {{ user.first_name|default:user.username }}
-                    </span>
-
-
-                    <form
-                        method="post"
-                        action="{% url 'accounts:logout' %}"
-                        class="form-logout"
-                    >
-
-                        {% csrf_token %}
-
-                        <button
-                            type="submit"
-                            class="boton-enlace"
-                        >
-                            Cerrar sesión
-                        </button>
-
-                    </form>
-
-                </div>
-
-
-            <!-- =============================================
-                 USUARIO NO AUTENTICADO
-                 ============================================= -->
-
-            {% else %}
-
-                <a href="{% url 'accounts:login' %}">
-                    Iniciar sesión
-                </a>
-
-                <a
-                    href="{% url 'accounts:registro' %}"
-                    class="boton-registro"
+            <form
+                method="post"
+                action="{% url 'accounts:logout' %}"
+                 class="form-logout"
                 >
-                    Crear cuenta
-                </a>
+                {% csrf_token %}
 
-            {% endif %}
+                <button type="submit" class="boton-enlace">
+                Cerrar sesión
+                </button>
+            </form>
 
-        </nav>
+        </div>
+
+
+    <!-- =====================================================
+         OPCIONES PARA USUARIOS NO AUTENTICADOS
+    ====================================================== -->
+
+    {% else %}
+
+
+        <!-- =================================================
+             INICIAR SESIÓN
+        ================================================== -->
+
+        <a href="{% url 'accounts:login' %}">
+            Iniciar sesión
+        </a>
+
+
+        <!-- =================================================
+             REGISTRO
+        ================================================== -->
+
+    
+        <a
+             href="{% url 'accounts:registro' %}"
+            class="boton-registro"
+        >
+            Registrarse
+        </a>
+
+
+    {% endif %}
+
+
+</nav>
+
+<!-- =========================================================
+     FIN DE NAVEGACIÓN PRINCIPAL
+========================================================= -->
 
     </header>
 

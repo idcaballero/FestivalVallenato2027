@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}
+Confirmar voto | Festival de la Leyenda Vallenata 2027
+{% endblock %}
+
+{% block content %}
+
+<section class="confirmacion-voto">
+    
+
+    <div class="contenedor">
+        <section class="seccion">
+
+         <div class="contenedor">
+
+        <!-- =====================================================
+             NAVEGACIÓN
+             ===================================================== -->
+
+        <div class="navegacion-regreso">
+
+        <a
+        href="{% url 'votaciones:votacion_detalle' votacion.pk %}"
+        class="boton-regresar"
+        >
+        ← Regresar
+        </a>
+
+        <a
+        href="{% url 'votaciones:inicio' %}"
+        class="boton-inicio"
+        >
+        Inicio
+        </a>
+
+    </div>
+
+
+        <!-- =====================================================
+             ENCABEZADO DE LA VOTACIÓN
+             ===================================================== -->
+
+        <p class="hero-etiqueta">
+            {{ votacion.categoria.nombre }}
+        </p>
+
+        <p class="hero-etiqueta">
+            Confirmación de voto
+        </p>
+
+        <h1 class="titulo-seccion">
+            Confirma tu elección
+        </h1>
+
+        <p>
+            Estás a punto de registrar tu voto en la categoría
+            <strong>{{ categoria.nombre }}</strong>.
+        </p>
+
+        <div class="tarjeta-confirmacion">
+
+            {% if opcion.imagen %}
+                <img
+                    src="{{ opcion.imagen.url }}"
+                    alt="{{ opcion.nombre }}"
+                    class="imagen-confirmacion"
+                >
+            {% endif %}
+
+            <h2>{{ opcion.nombre }}</h2>
+
+            {% if opcion.ciudad %}
+                <p>{{ opcion.ciudad }}</p>
+            {% endif %}
+
+            <p>
+                <strong>Categoría:</strong>
+                {{ categoria.nombre }}
+            </p>
+
+            <p>
+                <strong>Edición:</strong>
+                {{ edicion.nombre }}
+            </p>
+
+            <p class="aviso-confirmacion">
+                Una vez confirmado, no podrás registrar otro voto válido
+                dentro de esta misma categoría.
+            </p>
+
+            <form
+                method="post"
+                action="{% url 'votaciones:registrar_voto' opcion.pk %}"
+            >
+                {% csrf_token %}
+
+                <input
+                    type="hidden"
+                    name="categoria_id"
+                    value="{{ categoria.id }}"
+                >
+
+                <input
+                    type="hidden"
+                    name="edicion_id"
+                    value="{{ edicion.id }}"
+                >
+
+                <button
+                    type="submit"
+                    class="boton-votar"
+                >
+                    Confirmar voto
+                </button>
+
+                <a
+                    href="{% url 'votaciones:votacion_detalle' votacion.pk %}"
+                    class="boton-secundario"
+                >
+                    Regresar
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

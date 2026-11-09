@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="contenedor mis-votos-contenedor">
+
+    <div class="navegacion-regreso">
+        <a href="{% url 'votaciones:inicio' %}" class="boton-regresar">
+            ← Regresar
+        </a>
+    </div>
+
+    <div class="encabezado-mis-votos">
+        <h1>Mis votos</h1>
+
+        <p>
+            Consulta las categorías en las que ya has registrado tu voto.
+        </p>
+    </div>
+
+
+    {% if votos %}
+
+        <div class="grid-mis-votos">
+
+            {% for voto in votos %}
+
+                <div class="tarjeta-voto">
+
+                    <!-- TÍTULO DE LA CATEGORÍA -->
+                    <div class="tarjeta-voto-titulo">
+                        <h2>
+                            {{ voto.categoria.nombre }}
+                        </h2>
+                    </div>
+
+
+                    <!-- INFORMACIÓN DEL VOTO -->
+                    <div class="tarjeta-voto-contenido">
+
+                        <!-- PARTICIPANTE ELEGIDO -->
+                        <div class="caja-info-voto">
+                            <span class="etiqueta-voto">
+                                Tu elección
+                            </span>
+
+                            <strong class="nombre-eleccion">
+                                {{ voto.opcion.nombre }}
+                            </strong>
+                        </div>
+
+
+                        <!-- EDICIÓN -->
+                        <div class="caja-info-voto">
+                            <span class="etiqueta-voto">
+                                Edición
+                            </span>
+
+                            <strong>
+                                {{ voto.edicion.anio }}
+                            </strong>
+                        </div>
+
+
+                        <!-- FECHA -->
+                        <div class="caja-info-voto">
+                            <span class="etiqueta-voto">
+                                Fecha del voto
+                            </span>
+
+                            <strong>
+                                {{ voto.fecha_voto|date:"d/m/Y H:i" }}
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- ESTADO -->
+                    <div class="estado-voto">
+                        ✓ Voto registrado
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <div class="mensaje-sin-votos">
+
+            <h2>
+                Aún no has registrado votos
+            </h2>
+
+            <p>
+                Puedes ingresar a las categorías disponibles y seleccionar
+                a tus participantes favoritos.
+            </p>
+
+            <a href="{% url 'votaciones:categorias' %}"
+               class="boton-ver-categorias">
+                Ver categorías
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

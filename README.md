@@ -1,107 +1,109 @@
-@'
 # Festival de la Leyenda Vallenata 2027
-## Sistema Web de Votaciones
 
-Proyecto desarrollado para la asignatura **Desarrollo Web** de la Fundación Universitaria del Área Andina.
+Sistema web de votaciones desarrollado como proyecto académico para el Festival de la Leyenda Vallenata 2027.
 
-El aplicativo corresponde a una primera versión funcional de un sistema web de votaciones para el Festival de la Leyenda Vallenata 2027. Permite administrar ediciones, categorías, votaciones y participantes, además de gestionar usuarios y mostrar la información de manera dinámica mediante Django y MySQL.
-
----
+El aplicativo permite administrar ediciones, categorías, votaciones y participantes, además de registrar votos de usuarios autenticados mediante validaciones que impiden votos duplicados dentro de una misma categoría y edición.
 
 ## Tecnologías utilizadas
 
 - Python
-- Django
-- MySQL
-- HTML5
-- CSS3
-- Django ORM
-- Django Authentication
-- Git y GitHub
-
----
+- Django 5.2.18
+- MySQL 8.0
+- HTML
+- CSS
+- JavaScript
+- Git
+- GitHub
 
 ## Arquitectura
 
-El proyecto utiliza el patrón **MVT (Model - View - Template)** implementado por Django.
+El proyecto utiliza la arquitectura MVT de Django:
 
-### Model
-
-Define la estructura de los datos y sus relaciones.
-
-Entre las principales entidades se encuentran:
-
-- Edición
-- Categoría
-- Votación
-- Opción o participante
-- Voto
-- Auditoría de votos
-
-### View
-
-Contiene la lógica que procesa las solicitudes realizadas por los usuarios.
-
-Las vistas permiten:
-
-- Consultar categorías.
-- Consultar votaciones.
-- Visualizar participantes.
-- Registrar votos.
-- Validar permisos de usuario.
-- Evitar votos duplicados dentro de una misma categoría.
-
-### Template
-
-Corresponde a las interfaces HTML que se muestran al usuario.
-
-El sistema cuenta con interfaces para:
-
-- Página principal.
-- Categorías.
-- Detalle de categorías.
-- Participantes y votaciones.
-- Inicio de sesión.
-- Registro de usuarios.
-
----
+- **Model:** gestiona la estructura y persistencia de los datos.
+- **View:** contiene la lógica del sistema y las validaciones.
+- **Template:** presenta la información al usuario mediante HTML y CSS.
 
 ## Aplicaciones del proyecto
 
-### accounts
+### Accounts
 
-Gestiona las funcionalidades relacionadas con los usuarios:
+Gestiona las funciones relacionadas con los usuarios:
 
-- Registro.
-- Inicio de sesión.
-- Cierre de sesión.
-- Formularios de autenticación.
+- Registro de usuarios
+- Inicio de sesión
+- Cierre de sesión
+- Control de autenticación
 
-### votaciones
+### Votaciones
 
-Contiene la lógica principal del sistema:
+Gestiona el funcionamiento principal del sistema:
 
-- Ediciones del festival.
-- Categorías.
-- Votaciones.
-- Participantes.
-- Registro de votos.
-- Validaciones.
-- Administración de información.
+- Ediciones del festival
+- Categorías
+- Votaciones
+- Participantes u opciones
+- Registro de votos
+- Validaciones de voto
+- Historial de votos
+- Auditoría
+- API de categorías
 
----
+## Roles de usuario
 
-## Base de datos
+### Usuario regular
 
-El proyecto utiliza **MySQL** como sistema gestor de base de datos.
+Puede:
 
-La información de conexión se maneja mediante variables de entorno para evitar almacenar credenciales privadas directamente en el código.
+- Consultar las categorías disponibles.
+- Consultar participantes.
+- Votar en diferentes categorías.
+- Emitir solamente un voto por categoría y edición.
+- Consultar sus votos registrados.
 
-Ejemplo de archivo `.env`:
+### Jurado
 
-```env
-DB_NAME=festival_vallenato_2027
-DB_USER=root
-DB_PASSWORD=TU_CONTRASENA
-DB_HOST=127.0.0.1
-DB_PORT=3306
+Puede consultar la información del sistema, pero no puede registrar votos.
+
+### Administrador
+
+Puede administrar:
+
+- Ediciones
+- Categorías
+- Votaciones
+- Opciones o participantes
+- Votos
+- Registros de auditoría
+
+Los administradores no participan como votantes.
+
+## Regla principal de votación
+
+Cada usuario puede emitir solamente un voto por categoría y edición.
+
+Un usuario puede votar en diferentes categorías, pero después de registrar un voto en una categoría no puede seleccionar otro participante dentro de esa misma categoría.
+
+La restricción se controla tanto desde la lógica de Django como desde la base de datos.
+
+## Validaciones implementadas
+
+El sistema verifica:
+
+- Usuario autenticado.
+- Permisos para votar.
+- Edición activa.
+- Categoría activa.
+- Votación activa.
+- Opción activa.
+- Fechas válidas de votación.
+- Correspondencia entre opción y categoría.
+- Existencia de un voto previo.
+- Protección contra solicitudes duplicadas.
+- Restricción de duplicidad a nivel de base de datos.
+
+## Historial de votos
+
+Los usuarios autenticados pueden consultar sus votos desde:
+
+```text
+/mis-votos/

@@ -150,12 +150,25 @@ class Opcion(models.Model):
         return self.nombre
 
 class Voto(models.Model):
-
     usuario = models.ForeignKey(
         "auth.User",
         on_delete=models.PROTECT,
         related_name="votos",
         verbose_name="Usuario que votó"
+    )
+
+    edicion = models.ForeignKey(
+         Edicion,
+         on_delete=models.PROTECT,
+         related_name="votos",
+         verbose_name="Edición"
+    )
+
+    categoria = models.ForeignKey(
+         Categoria,
+         on_delete=models.PROTECT,
+         related_name="votos",
+         verbose_name="Categoría"
     )
 
     opcion = models.ForeignKey(
@@ -195,21 +208,46 @@ class Voto(models.Model):
         verbose_name="Motivo de anulación"
     )
 
+    clave_activa = models.PositiveSmallIntegerField(
+        default=1,
+        null=True,
+        blank=True,
+        editable=False,
+        verbose_name="Clave de voto activo"
+    )
+
     class Meta:
         verbose_name = "Voto"
         verbose_name_plural = "Votos"
         ordering = ["-fecha_voto"]
 
+        constraints = [
+            models.UniqueConstraint(
+                fields=[
+                    "usuario",
+                    "edicion",
+                    "categoria",
+                    "clave_activa",
+                 ],
+                name="voto_activo_unico_usuario_edicion_categoria",
+            )
+         ]
+
+    def save(self, *args, **kwargs):
+        # Un voto activo usa 1.
+        # Un voto anulado usa NULL para conservar el historial.
+        self.clave_activa = None if self.anulado else 1
+
+        update_fields = kwargs.get("update_fields")
+
+        if update_fields is not None:
+            kwargs["update_fields"] = set(update_fields) | {"clave_activa"}
+
+        super().save(*args, **kwargs)
+
     def __str__(self):
         estado = "ANULADO" if self.anulado else "VÁLIDO"
-
-        return (
-            f"{self.usuario.username} - "
-            f"{self.opcion.nombre} - "
-            f"{estado}"
-        )
-
-
+        return f"{self.usuario.username} - {self.opcion.nombre} - {estado}"
 class AuditoriaVoto(models.Model):
 
     ACCIONES = [

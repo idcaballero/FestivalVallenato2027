@@ -13,6 +13,28 @@
 
 
         <!-- =====================================================
+             NAVEGACIÓN
+             ===================================================== -->
+
+        <div class="navegacion-regreso">
+
+        <a
+        href="{% url 'votaciones:categoria_detalle' votacion.categoria.pk %}"
+        class="boton-regresar"
+         >
+        ← Regresar
+        </a>
+
+        <a
+        href="{% url 'votaciones:inicio' %}"
+        class="boton-inicio"
+         >
+        Inicio
+         </a>
+
+    </div>
+
+        <!-- =====================================================
              ENCABEZADO DE LA VOTACIÓN
              ===================================================== -->
 
@@ -31,7 +53,6 @@
             </p>
 
         {% endif %}
-
 
 
         <!-- =====================================================
@@ -55,10 +76,8 @@
         {% endif %}
 
 
-
         <!-- =====================================================
-             ADMINISTRADOR / SUPERUSUARIO / JURADO
-             NO PUEDEN VOTAR
+             USUARIO AUTENTICADO SIN PERMISO PARA VOTAR
              ===================================================== -->
 
         {% if user.is_authenticated and not puede_votar %}
@@ -87,9 +106,8 @@
         {% endif %}
 
 
-
         <!-- =====================================================
-             VOTANTE QUE YA PARTICIPÓ
+             USUARIO QUE YA REGISTRÓ SU VOTO
              ===================================================== -->
 
         {% if puede_votar and voto_usuario %}
@@ -120,7 +138,6 @@
         {% endif %}
 
 
-
         <!-- =====================================================
              PARTICIPANTES / OPCIONES
              ===================================================== -->
@@ -132,9 +149,7 @@
                 <article class="tarjeta participante-card">
 
 
-                    <!-- =========================================
-                         IMAGEN DEL PARTICIPANTE
-                         ========================================= -->
+                    <!-- IMAGEN -->
 
                     {% if opcion.imagen %}
 
@@ -147,13 +162,10 @@
                     {% endif %}
 
 
-
                     <div class="contenido-tarjeta">
 
 
-                        <!-- =====================================
-                             CIUDAD
-                             ===================================== -->
+                        <!-- CIUDAD -->
 
                         {% if opcion.ciudad %}
 
@@ -164,20 +176,14 @@
                         {% endif %}
 
 
-
-                        <!-- =====================================
-                             NOMBRE
-                             ===================================== -->
+                        <!-- NOMBRE -->
 
                         <h2>
                             {{ opcion.nombre }}
                         </h2>
 
 
-
-                        <!-- =====================================
-                             DESCRIPCIÓN
-                             ===================================== -->
+                        <!-- DESCRIPCIÓN -->
 
                         {% if opcion.descripcion %}
 
@@ -188,10 +194,9 @@
                         {% endif %}
 
 
-
-                        <!-- =====================================
+                        <!-- =================================================
                              ADMIN / SUPERUSUARIO / JURADO
-                             ===================================== -->
+                             ================================================= -->
 
                         {% if user.is_authenticated and not puede_votar %}
 
@@ -200,13 +205,11 @@
                             </div>
 
 
-
-                        <!-- =====================================
-                             VOTANTE QUE YA VOTÓ
-                             ===================================== -->
+                        <!-- =================================================
+                             USUARIO QUE YA VOTÓ
+                             ================================================= -->
 
                         {% elif voto_usuario %}
-
 
                             {% if voto_usuario.opcion.id == opcion.id %}
 
@@ -223,35 +226,23 @@
                             {% endif %}
 
 
-
-                        <!-- =====================================
-                             VOTANTE AUTORIZADO
-                             ===================================== -->
+                        <!-- =================================================
+                             USUARIO REGULAR AUTORIZADO
+                             ================================================= -->
 
                         {% elif puede_votar %}
 
-                            <form
-                                method="post"
-                                action="{% url 'votaciones:registrar_voto' opcion.pk %}"
-                                class="form-votar"
+                            <a
+                                href="{% url 'votaciones:confirmar_voto' opcion.pk %}"
+                                class="boton-votar"
                             >
-
-                                {% csrf_token %}
-
-                                <button
-                                    type="submit"
-                                    class="boton-votar"
-                                >
-                                    Votar por {{ opcion.nombre }}
-                                </button>
-
-                            </form>
+                                Votar por {{ opcion.nombre }}
+                            </a>
 
 
-
-                        <!-- =====================================
-                             USUARIO SIN INICIAR SESIÓN
-                             ===================================== -->
+                        <!-- =================================================
+                             USUARIO NO AUTENTICADO
+                             ================================================= -->
 
                         {% else %}
 
@@ -272,26 +263,40 @@
 
             {% empty %}
 
-
-                <!-- =============================================
-                     SIN PARTICIPANTES
-                     ============================================= -->
-
                 <article class="tarjeta">
 
-                    <h2>
-                        No hay participantes disponibles
-                    </h2>
+                    <div class="contenido-tarjeta">
 
-                    <p>
-                        Esta votación todavía no tiene opciones
-                        registradas.
-                    </p>
+                        <h2>
+                            No hay participantes disponibles
+                        </h2>
+
+                        <p>
+                            Esta votación todavía no tiene opciones
+                            registradas.
+                        </p>
+
+                    </div>
 
                 </article>
 
-
             {% endfor %}
+
+        </div>
+
+
+        <!-- =====================================================
+             VOLVER A LA CATEGORÍA
+             ===================================================== -->
+
+        <div class="volver-categorias">
+
+            <a
+                href="{% url 'votaciones:categoria_detalle' votacion.categoria.pk %}"
+                class="enlace-volver"
+            >
+                ← Volver a {{ votacion.categoria.nombre }}
+            </a>
 
         </div>
 
